@@ -1,19 +1,17 @@
-package com.medkandirou.youwatch.reaction;
+package com.medkandirou.youwatch.subscribe;
 
 import com.medkandirou.youwatch.channel.Channel;
-import com.medkandirou.youwatch.video.Video;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class ReactionId implements Serializable {
+public class SubscribeId implements Serializable {
     @ManyToOne
-    private Channel channel;
+    private Channel channel_follow;
     @ManyToOne
-    private Video video;
+    private Channel channel_followed;
 }

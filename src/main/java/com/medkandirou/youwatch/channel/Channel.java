@@ -22,6 +22,8 @@ public class Channel {
     @NotNull private String firstname;
     @NotNull private String lastName;
     @NotNull private LocalDate creationDate;
+    @NotNull private String profil_img;
+    @NotNull private String cover_img;
     @NotNull private String email;
     @NotNull private String password;
 
