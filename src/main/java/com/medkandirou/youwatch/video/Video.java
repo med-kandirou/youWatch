@@ -1,6 +1,6 @@
 package com.medkandirou.youwatch.video;
 
-import com.medkandirou.youwatch.categorie.Categorie;
+import com.medkandirou.youwatch.category.Category;
 import com.medkandirou.youwatch.channel.Channel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -22,7 +22,7 @@ public class Video {
     @NotNull private LocalDate datePosting;
 
     @ManyToOne
-    private Categorie categorie;
+    private Category category;
 
     @ManyToOne
     private Channel channel;

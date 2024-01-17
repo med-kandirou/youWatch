@@ -34,7 +34,7 @@ public class ChannelController {
         return new ResponseEntity<>(channelService.save(channelDTOReq), HttpStatus.OK);
     }
 
-    @GetMapping(path = {"{questionId}"})
+    @GetMapping(path = {"{channelId}"})
     public ResponseEntity<ChannelDTOres> findById(@PathVariable("channelId") Long channelId){
         return new ResponseEntity<>(channelService.findById(channelId), HttpStatus.OK);
     }

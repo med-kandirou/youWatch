@@ -1,4 +1,4 @@
-package com.medkandirou.youwatch.categorie;
+package com.medkandirou.youwatch.category;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @Entity
-public class Categorie {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull private Long id;
