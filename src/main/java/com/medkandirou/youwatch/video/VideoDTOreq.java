@@ -1,6 +1,7 @@
 package com.medkandirou.youwatch.video;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -23,7 +24,8 @@ public class VideoDTOreq {
     @NotNull(message = "Thumbnail cannot be null")
     private String thumbnail;
 
-    @NotNull(message = "Date posting cannot be null")
+    @NotNull(message = "datePosting date cannot be null")
+    @PastOrPresent(message = "datePosting date must be in the past or present")
     private LocalDate datePosting;
 
     @NotNull(message = "Category cannot be null")

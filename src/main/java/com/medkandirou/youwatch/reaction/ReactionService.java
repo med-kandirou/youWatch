@@ -1,4 +1,6 @@
-package com.medkandirou.youwatch.comment;
+package com.medkandirou.youwatch.reaction;
+
+
 
 import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.channel.ChannelRepository;
@@ -13,15 +15,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CommentService implements IComment{
-
-    private final CommentRepository commentRepository;
+public class ReactionService implements IReaction{
+    private final ReactionRepository reactionRepository;
     private final ChannelRepository channelRepository;
     private final VideoRepository videoRepository;
     private final ModelMapper modelMapper;
 
-    public CommentService(CommentRepository commentRepository, ChannelRepository channelRepository, VideoRepository videoRepository, ModelMapper modelMapper) {
-        this.commentRepository = commentRepository;
+    public ReactionService(ReactionRepository reactionRepository, ChannelRepository channelRepository, VideoRepository videoRepository, ModelMapper modelMapper) {
+        this.reactionRepository = reactionRepository;
         this.channelRepository = channelRepository;
         this.videoRepository = videoRepository;
         this.modelMapper = modelMapper;
@@ -29,23 +30,23 @@ public class CommentService implements IComment{
 
 
     @Override
-    public CommentDTOres findById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
+    public ReactionDTOres findById(Video_channel_Id videoChannelId) {
+        Reaction Reaction = reactionRepository.findById(videoChannelId)
                 .orElseThrow(() -> new ResourceNotFoundException("id video_channel : " + videoChannelId));
-        return modelMapper.map(Comment, CommentDTOres.class);
+        return modelMapper.map(Reaction, ReactionDTOres.class);
     }
 
     @Override
-    public List<CommentDTOres> findAll() {
-        List<Comment> categories = commentRepository.findAll();
+    public List<ReactionDTOres> findAll() {
+        List<Reaction> categories = reactionRepository.findAll();
         return categories.stream()
-                .map(cat -> modelMapper.map(cat, CommentDTOres.class))
+                .map(cat -> modelMapper.map(cat, ReactionDTOres.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public CommentDTOres save(CommentDTOreq entity) {
-        Comment comment = modelMapper.map(entity, Comment.class);
+    public ReactionDTOres save(ReactionDTOreq entity) {
+        Reaction reaction = modelMapper.map(entity, Reaction.class);
         Channel channel = channelRepository.findById(entity.getVideo_channel_id().getChannel().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("id Channel: " + entity.getVideo_channel_id().getChannel().getId()));
         Video video = videoRepository.findById(entity.getVideo_channel_id().getVideo().getId())
@@ -53,22 +54,21 @@ public class CommentService implements IComment{
         Video_channel_Id video_channel_id= new Video_channel_Id();
         video_channel_id.setChannel(channel);
         video_channel_id.setVideo(video);
-        comment.setVideo_channel_id(video_channel_id);
-        commentRepository.save(comment);
-        return modelMapper.map(comment, CommentDTOres.class);
+        reaction.setVideo_channel_id(video_channel_id);
+        reactionRepository.save(reaction);
+        return modelMapper.map(reaction, ReactionDTOres.class);
     }
 
     @Override
-    public CommentDTOres update(CommentDTOreq entity) {
+    public ReactionDTOres update(ReactionDTOreq entity) {
         return null;
     }
 
     @Override
-    public CommentDTOreq deleteById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
+    public ReactionDTOreq deleteById(Video_channel_Id videoChannelId) {
+        Reaction Reaction = reactionRepository.findById(videoChannelId)
                 .orElseThrow(() -> new ResourceNotFoundException("id Categorie: " + videoChannelId));
-        commentRepository.deleteById(videoChannelId);
-        return modelMapper.map(Comment, CommentDTOreq.class);
+        reactionRepository.deleteById(videoChannelId);
+        return modelMapper.map(Reaction, ReactionDTOreq.class);
     }
-
 }

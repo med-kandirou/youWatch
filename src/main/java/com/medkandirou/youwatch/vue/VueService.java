@@ -1,4 +1,4 @@
-package com.medkandirou.youwatch.comment;
+package com.medkandirou.youwatch.vue;
 
 import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.channel.ChannelRepository;
@@ -8,44 +8,42 @@ import com.medkandirou.youwatch.video.Video;
 import com.medkandirou.youwatch.video.VideoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-public class CommentService implements IComment{
 
-    private final CommentRepository commentRepository;
+@Service
+public class VueService implements IVue{
+    private final VueRepository vueRepository;
     private final ChannelRepository channelRepository;
     private final VideoRepository videoRepository;
     private final ModelMapper modelMapper;
 
-    public CommentService(CommentRepository commentRepository, ChannelRepository channelRepository, VideoRepository videoRepository, ModelMapper modelMapper) {
-        this.commentRepository = commentRepository;
+    public VueService(VueRepository vueRepository, ChannelRepository channelRepository, VideoRepository videoRepository, ModelMapper modelMapper) {
+        this.vueRepository = vueRepository;
         this.channelRepository = channelRepository;
         this.videoRepository = videoRepository;
         this.modelMapper = modelMapper;
     }
 
-
     @Override
-    public CommentDTOres findById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
+    public VueDTOres findById(Video_channel_Id videoChannelId) {
+        Vue vue = vueRepository.findById(videoChannelId)
                 .orElseThrow(() -> new ResourceNotFoundException("id video_channel : " + videoChannelId));
-        return modelMapper.map(Comment, CommentDTOres.class);
+        return modelMapper.map(vue, VueDTOres.class);
     }
 
     @Override
-    public List<CommentDTOres> findAll() {
-        List<Comment> categories = commentRepository.findAll();
+    public List<VueDTOres> findAll() {
+        List<Vue> categories = vueRepository.findAll();
         return categories.stream()
-                .map(cat -> modelMapper.map(cat, CommentDTOres.class))
+                .map(v -> modelMapper.map(v, VueDTOres.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public CommentDTOres save(CommentDTOreq entity) {
-        Comment comment = modelMapper.map(entity, Comment.class);
+    public VueDTOres save(VueDTOreq entity) {
+        Vue vue = modelMapper.map(entity, Vue.class);
         Channel channel = channelRepository.findById(entity.getVideo_channel_id().getChannel().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("id Channel: " + entity.getVideo_channel_id().getChannel().getId()));
         Video video = videoRepository.findById(entity.getVideo_channel_id().getVideo().getId())
@@ -53,22 +51,21 @@ public class CommentService implements IComment{
         Video_channel_Id video_channel_id= new Video_channel_Id();
         video_channel_id.setChannel(channel);
         video_channel_id.setVideo(video);
-        comment.setVideo_channel_id(video_channel_id);
-        commentRepository.save(comment);
-        return modelMapper.map(comment, CommentDTOres.class);
+        vue.setVideo_channel_id(video_channel_id);
+        vueRepository.save(vue);
+        return modelMapper.map(vue, VueDTOres.class);
     }
 
     @Override
-    public CommentDTOres update(CommentDTOreq entity) {
+    public VueDTOres update(VueDTOreq entity) {
         return null;
     }
 
     @Override
-    public CommentDTOreq deleteById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
+    public VueDTOreq deleteById(Video_channel_Id videoChannelId) {
+        Vue vue = vueRepository.findById(videoChannelId)
                 .orElseThrow(() -> new ResourceNotFoundException("id Categorie: " + videoChannelId));
-        commentRepository.deleteById(videoChannelId);
-        return modelMapper.map(Comment, CommentDTOreq.class);
+        vueRepository.deleteById(videoChannelId);
+        return modelMapper.map(vue, VueDTOreq.class);
     }
-
 }
