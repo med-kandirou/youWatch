@@ -1,4 +1,4 @@
-package com.mkandirou.aftas.Exception;
+package com.medkandirou.youwatch.Exception;
 
 public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String msg) {

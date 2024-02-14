@@ -1,4 +1,4 @@
-package com.mkandirou.aftas.Exception;
+package com.medkandirou.youwatch.Exception;
 
 public class RecordAlreadyExistsException extends RuntimeException{
     private RecordAlreadyExistsException(String message){
