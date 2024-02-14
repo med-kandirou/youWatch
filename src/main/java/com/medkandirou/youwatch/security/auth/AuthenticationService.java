@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,10 @@ public class AuthenticationService {
 
   public AuthenticationResponse register(RegisterRequest request) {
     Channel channel= new Channel();
+    channel.setFirstname(request.getFirstname());
+    channel.setLastName(request.getLastname());
     channel.setEmail(request.getEmail());
+    channel.setCreationDate(LocalDate.now());
     channel.setPassword(passwordEncoder.encode(request.getPassword()));
     channel.setRole(request.getRole());
     repository.save(channel);

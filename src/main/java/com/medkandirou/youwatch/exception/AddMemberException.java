@@ -1,4 +1,4 @@
-package com.medkandirou.youwatch.Exception;
+package com.medkandirou.youwatch.exception;
 
 public class AddMemberException extends RuntimeException{
     public AddMemberException(String message){

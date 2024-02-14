@@ -20,7 +20,7 @@ public class ApplicationConfig {
     private final ChannelRepository repository;
     @Bean
     public UserDetailsService userDetailsService() {
-        return channel -> repository.findByEmail(channel)
+        return email -> repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("channel not found"));
     }
 

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,12 +23,12 @@ import java.util.Set;
 public class Channel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull private Long id;
+    private Long id;
     @NotNull private String firstname;
     @NotNull private String lastName;
     @NotNull private LocalDate creationDate;
-    @NotNull private String profil_img;
-    @NotNull private String cover_img;
+    private String profil_img;
+    private String cover_img;
     @NotNull private String email;
     @NotNull private String password;
     @Enumerated(EnumType.STRING)
@@ -36,7 +37,6 @@ public class Channel implements UserDetails {
     //favories
     @ManyToMany(mappedBy = "channels")
     private Set<Video> videos = new HashSet<>();
-
 
 
     @Override
@@ -73,4 +73,5 @@ public class Channel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

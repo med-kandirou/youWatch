@@ -1,8 +1,8 @@
 package com.medkandirou.youwatch.comment;
 
+import com.medkandirou.youwatch.exception.ResourceNotFoundException;
 import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.channel.ChannelRepository;
-import com.medkandirou.youwatch.exception.ResourceNotFoundException;
 import com.medkandirou.youwatch.helpers.Video_channel_Id;
 import com.medkandirou.youwatch.video.Video;
 import com.medkandirou.youwatch.video.VideoRepository;

@@ -5,6 +5,7 @@ import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.helpers.Video_channel_Id;
 import com.medkandirou.youwatch.video.Video;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="api/comment")
+
 public class CommentController {
 
     private final CommentService commentService;
 
-    private CommentController(CommentService    commentService){
+    private CommentController(CommentService commentService){
         this.commentService=commentService;
     }
 

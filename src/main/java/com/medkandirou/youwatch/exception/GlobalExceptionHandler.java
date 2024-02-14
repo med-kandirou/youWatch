@@ -1,4 +1,4 @@
-package com.medkandirou.youwatch.Exception;
+package com.medkandirou.youwatch.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
