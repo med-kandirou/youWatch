@@ -49,6 +49,8 @@ public class AuthenticationService {
     Channel channel=repository.findByEmail(request.getEmail())
             .orElseThrow(()-> new UsernameNotFoundException("Channel not found"));
     Map<String, Object> claims = new HashMap<>();
+    claims.put("firstname", channel.getUsername());
+    claims.put("lastname", channel.getLastName());
     claims.put("password", channel.getPassword());
     claims.put("role", channel.getRole().name());
 
