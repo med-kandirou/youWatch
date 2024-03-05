@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public Map<String, String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         Map<String, String> errorResponse = new HashMap<>();
-        errorResponse.put("recource not found number", ex.getMessage());
+        errorResponse.put("recource not found ", ex.getMessage());
         return errorResponse;
     }
 

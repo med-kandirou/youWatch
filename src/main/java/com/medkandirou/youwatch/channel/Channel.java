@@ -22,8 +22,8 @@ public class Channel implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull private String firstname;
-    @NotNull private String lastName;
-    @NotNull private LocalDate creationDate;
+    @NotNull private String lastname;
+    private LocalDate creationDate;
     private String profil_img;
     private String cover_img;
     @NotNull private String email;
