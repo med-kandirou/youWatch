@@ -2,10 +2,12 @@ package com.medkandirou.youwatch.security.auth;
 
 
 import com.medkandirou.youwatch.channel.Channel;
+import com.medkandirou.youwatch.channel.ChannelDTOres;
 import com.medkandirou.youwatch.channel.ChannelRepository;
 import com.medkandirou.youwatch.exception.ResourceNotFoundException;
 import com.medkandirou.youwatch.security.config.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -26,8 +28,9 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
+  private final ModelMapper modelMapper;
 
-  public AuthenticationResponse register(RegisterRequest request) {
+  public ChannelDTOres register(RegisterRequest request) {
     Channel channel= new Channel();
     channel.setFirstname(request.getFirstname());
     channel.setLastname(request.getLastname());
@@ -35,9 +38,9 @@ public class AuthenticationService {
     channel.setCreationDate(LocalDate.now());
     channel.setPassword(passwordEncoder.encode(request.getPassword()));
     channel.setRole(request.getRole());
-    repository.save(channel);
-    String jwt=jwtService.generateToken(channel);
-    return AuthenticationResponse.builder().Token(jwt).build();
+    return modelMapper.map(repository.save(channel), ChannelDTOres.class);
+    /*String jwt=jwtService.generateToken(channel);
+    return AuthenticationResponse.builder().Token(jwt).build();*/
   }
 
   public AuthenticationResponse login(AuthenticationRequest request) {

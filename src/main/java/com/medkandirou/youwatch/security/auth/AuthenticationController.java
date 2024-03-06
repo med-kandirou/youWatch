@@ -1,6 +1,7 @@
 package com.medkandirou.youwatch.security.auth;
 
 
+import com.medkandirou.youwatch.channel.ChannelDTOres;
 import com.medkandirou.youwatch.security.auth.AuthenticationService;
 import com.medkandirou.youwatch.security.auth.RegisterRequest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class AuthenticationController {
   private final AuthenticationService service;
 
   @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+  public ResponseEntity<ChannelDTOres> register(@RequestBody RegisterRequest request) {
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/login")

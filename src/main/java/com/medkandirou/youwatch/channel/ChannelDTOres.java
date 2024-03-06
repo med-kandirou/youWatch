@@ -13,5 +13,5 @@ public class ChannelDTOres {
     private String profilImg;
     private String coverImg;
     private String email;
-    private String password;
+    private Role role;
 }
