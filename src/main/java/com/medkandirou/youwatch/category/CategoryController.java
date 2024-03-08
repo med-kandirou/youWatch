@@ -1,8 +1,10 @@
 package com.medkandirou.youwatch.category;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,37 +12,35 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(path="api/categorie")
+@RequestMapping(path="api/category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    private final CategoryService categoryService;
-
-    private CategoryController(CategoryService categoryService){
-        this.categoryService=categoryService;
-    }
+    private final ICategorie iCategorie;
 
     @GetMapping
     public ResponseEntity<List<CategoryDTOres>> getAll(){
-        return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(iCategorie.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTOres> save(@Valid @RequestBody CategoryDTOreq categorieId){
-        return new ResponseEntity<>(categoryService.save(categorieId), HttpStatus.OK);
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    public ResponseEntity<CategoryDTOres> save(@Valid @RequestBody CategoryDTOreq categoryDTOreq){
+        return new ResponseEntity<>(iCategorie.save(categoryDTOreq), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<CategoryDTOres> update(@Valid @RequestBody CategoryDTOreq categorieId){
-        return new ResponseEntity<>(categoryService.save(categorieId), HttpStatus.OK);
+        return new ResponseEntity<>(iCategorie.save(categorieId), HttpStatus.OK);
     }
 
     @GetMapping(path = {"{categorieId}"})
     public ResponseEntity<CategoryDTOres> findById(@PathVariable("categorieId") Long categorieId){
-        return new ResponseEntity<>(categoryService.findById(categorieId), HttpStatus.OK);
+        return new ResponseEntity<>(iCategorie.findById(categorieId), HttpStatus.OK);
     }
 
     @DeleteMapping(path = {"{categorieId}"})
     public ResponseEntity<CategoryDTOreq> deleteById(@PathVariable("categorieId") Long categorieId){
-        return new ResponseEntity<>(categoryService.deleteById(categorieId), HttpStatus.OK);
+        return new ResponseEntity<>(iCategorie.deleteById(categorieId), HttpStatus.OK);
     }
 }

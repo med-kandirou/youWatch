@@ -5,6 +5,8 @@ import com.medkandirou.youwatch.video.Video;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,20 +18,21 @@ import java.util.*;
 
 @Data
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Channel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull private String firstname;
-    @NotNull private String lastname;
+    @NonNull private String firstname;
+    @NonNull private String lastname;
     private LocalDate creationDate;
     private String profil_img;
     private String cover_img;
-    @NotNull private String email;
-    @NotNull private String password;
+    @NonNull private String email;
+    @NonNull private String password;
     @Enumerated(EnumType.STRING)
-    @NotNull private Role role;
+    @NonNull private Role role;
 
     //favories
     @ManyToMany(mappedBy = "channels")
