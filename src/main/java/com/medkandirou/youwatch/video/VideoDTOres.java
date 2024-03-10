@@ -2,7 +2,9 @@ package com.medkandirou.youwatch.video;
 
 import com.medkandirou.youwatch.category.CategoryDTOres;
 import com.medkandirou.youwatch.channel.ChannelDTOres;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NonNull;
 
 import java.time.LocalDate;
 
@@ -14,6 +16,7 @@ public class VideoDTOres {
     private String link;
     private String thumbnail;
     private LocalDate datePosting;
+    private Integer nbrVues;
     private CategoryDTOres category;
     private ChannelDTOres channel;
 }
