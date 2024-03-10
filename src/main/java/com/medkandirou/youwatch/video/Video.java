@@ -27,9 +27,9 @@ public class Video {
     @NonNull private LocalDate datePosting;
     @NonNull private Integer nbrVues;
     @ManyToOne
-    private Category category;
+    @NonNull private Category category;
     @ManyToOne
-    private Channel channel;
+    @NonNull private Channel channel;
 
     //favories
     @ManyToMany(cascade = CascadeType.ALL)
