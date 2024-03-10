@@ -18,7 +18,7 @@ public class CategoryService implements ICategorie{
     }
 
     @Override
-    public CategoryDTOres findById(Long id) {
+    public CategoryDTOres findById(Integer id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id Categorie : " + id));
         return modelMapper.map(category, CategoryDTOres.class);
@@ -45,7 +45,7 @@ public class CategoryService implements ICategorie{
     }
 
     @Override
-    public CategoryDTOreq deleteById(Long id) {
+    public CategoryDTOreq deleteById(Integer id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id Categorie: " + id));
         categoryRepository.deleteById(id);

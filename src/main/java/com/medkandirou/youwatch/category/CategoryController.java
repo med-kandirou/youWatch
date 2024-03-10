@@ -35,12 +35,12 @@ public class CategoryController {
     }
 
     @GetMapping(path = {"{categorieId}"})
-    public ResponseEntity<CategoryDTOres> findById(@PathVariable("categorieId") Long categorieId){
+    public ResponseEntity<CategoryDTOres> findById(@PathVariable("categorieId") Integer categorieId){
         return new ResponseEntity<>(iCategorie.findById(categorieId), HttpStatus.OK);
     }
 
     @DeleteMapping(path = {"{categorieId}"})
-    public ResponseEntity<CategoryDTOreq> deleteById(@PathVariable("categorieId") Long categorieId){
+    public ResponseEntity<CategoryDTOreq> deleteById(@PathVariable("categorieId") Integer categorieId){
         return new ResponseEntity<>(iCategorie.deleteById(categorieId), HttpStatus.OK);
     }
 }

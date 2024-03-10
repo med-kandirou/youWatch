@@ -5,25 +5,29 @@ import com.medkandirou.youwatch.channel.Channel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
-    @NotNull private String name;
-    @NotNull private String description;
-    @NotNull private String link;
-    @NotNull private String thumbnail;
-    @NotNull private LocalDate datePosting;
-
+    @NonNull private String title;
+    @NonNull private String description;
+    @NonNull private String link;
+    @NonNull private String thumbnail;
+    @NonNull private LocalDate datePosting;
+    @NonNull private Integer nbrVues;
     @ManyToOne
     private Category category;
-
     @ManyToOne
     private Channel channel;
 

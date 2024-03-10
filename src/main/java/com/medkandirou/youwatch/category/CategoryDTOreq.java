@@ -9,6 +9,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class CategoryDTOreq {
-    private Long id;
+    private Integer id;
     @NonNull private String name;
 }

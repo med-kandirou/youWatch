@@ -13,7 +13,7 @@ public class VideoDTOreq {
     private Long id;
 
     @NotNull(message = "Name cannot be null")
-    private String name;
+    private String title;
 
     @NotNull(message = "Description cannot be null")
     private String description;
@@ -29,7 +29,7 @@ public class VideoDTOreq {
     private LocalDate datePosting;
 
     @NotNull(message = "Category cannot be null")
-    private Long categoryId;
+    private Integer categoryId;
 
     @NotNull(message = "Channel cannot be null")
     private Long channelId;

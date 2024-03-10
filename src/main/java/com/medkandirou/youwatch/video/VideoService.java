@@ -6,8 +6,10 @@ import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.channel.ChannelRepository;
 import com.medkandirou.youwatch.exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,5 +67,11 @@ public class VideoService implements IVideo{
                 .orElseThrow(() -> new ResourceNotFoundException("id Video: " + id));
         videoRepository.deleteById(id);
         return modelMapper.map(video, VideoDTOreq.class);
+    }
+
+    @Override
+    public Page<VideoDTOres> paginate(Pageable pageable) {
+        return videoRepository.findAll(pageable)
+                .map(video -> modelMapper.map(video, VideoDTOres.class));
     }
 }
