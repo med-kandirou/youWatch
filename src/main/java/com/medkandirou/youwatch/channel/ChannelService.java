@@ -54,4 +54,6 @@ public class ChannelService implements IChannel{
         channelRepository.deleteById(id);
         return modelMapper.map(channel, ChannelDTOreq.class);
     }
+
+
 }

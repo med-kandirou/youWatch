@@ -48,4 +48,10 @@ public class VideoController {
     public ResponseEntity<VideoDTOreq> deleteById(@PathVariable("videoId") Long videoId){
         return new ResponseEntity<>(videoService.deleteById(videoId), HttpStatus.OK);
     }
+
+    @GetMapping(path = {"channel/{channelId}"})
+    public ResponseEntity<List<VideoDTOres>> getvideoByChannel(@PathVariable("channelId") Long channelId){
+        return new ResponseEntity<>(videoService.getvideoByChannel(channelId), HttpStatus.OK);
+    }
+
 }

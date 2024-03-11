@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class ChannelDTOres {
     private Long id;
     private String firstname;
-    private String lastName;
+    private String lastname;
     private LocalDate creationDate;
     private String profilImg;
     private String coverImg;

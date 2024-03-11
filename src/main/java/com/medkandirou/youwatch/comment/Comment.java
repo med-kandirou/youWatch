@@ -8,11 +8,14 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @RequiredArgsConstructor
 @Entity
 public class Comment {
     @EmbeddedId
     @NotNull private Video_channel_Id video_channel_id;
-    @NotNull private String comment;
+    @NotNull private String content;
+    @NotNull private LocalDateTime datePosting;
 }

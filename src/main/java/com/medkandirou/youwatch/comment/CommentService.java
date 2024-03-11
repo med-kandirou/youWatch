@@ -37,9 +37,9 @@ public class CommentService implements IComment{
 
     @Override
     public List<CommentDTOres> findAll() {
-        List<Comment> categories = commentRepository.findAll();
-        return categories.stream()
-                .map(cat -> modelMapper.map(cat, CommentDTOres.class))
+        List<Comment> comments = commentRepository.findAll();
+        return comments.stream()
+                .map(c -> modelMapper.map(c, CommentDTOres.class))
                 .collect(Collectors.toList());
     }
 
@@ -70,5 +70,16 @@ public class CommentService implements IComment{
         commentRepository.deleteById(videoChannelId);
         return modelMapper.map(Comment, CommentDTOreq.class);
     }
+
+
+    @Override
+    public List<CommentDTOres> getCommentsByVideo(Long videoId) {
+        List<Comment> comments = commentRepository.getCommentByVideoId(videoId);
+        return comments.stream()
+                .map(c -> modelMapper.map(c, CommentDTOres.class))
+                .collect(Collectors.toList());
+    }
+
+
 
 }

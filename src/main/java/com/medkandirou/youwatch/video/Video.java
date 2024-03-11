@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-
 @Entity
 @Data
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class Video {
     @NonNull private String description;
     @NonNull private String link;
     @NonNull private String thumbnail;
-    @NonNull private LocalDate datePosting;
+    @NonNull private LocalDateTime datePosting;
     @NonNull private Integer nbrVues;
     @ManyToOne
     @NonNull private Category category;

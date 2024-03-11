@@ -8,6 +8,6 @@ import lombok.Data;
 public class CommentDTOreq {
     @NotNull(message = "Video_channel_Id is required")
     @NotNull private Video_channel_Id video_channel_id;
-    @NotNull(message = "comment is required")
-    @NotNull private String comment;
+    @NotNull(message = "content is required")
+    @NotNull private String content;
 }

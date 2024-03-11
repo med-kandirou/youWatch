@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class VideoDTOres {
@@ -15,7 +16,7 @@ public class VideoDTOres {
     private String description;
     private String link;
     private String thumbnail;
-    private LocalDate datePosting;
+    private LocalDateTime datePosting;
     private Integer nbrVues;
     private CategoryDTOres category;
     private ChannelDTOres channel;

@@ -8,4 +8,5 @@ import lombok.Data;
 public class CommentDTOres {
     @NotNull private Video_channel_Id video_channel_id;
     @NotNull private String content;
+    @NotNull private String datePosting;
 }

@@ -58,4 +58,11 @@ public class CommentController {
         video.setId(videoId);
         return new ResponseEntity<>(commentService.deleteById(id), HttpStatus.OK);
     }
+
+
+    @GetMapping(path = {"video/{videoId}"})
+    public ResponseEntity<List<CommentDTOres>> getCommentsByVideo(@PathVariable("videoId") Long videoId){
+        return new ResponseEntity<>(commentService.getCommentsByVideo(videoId), HttpStatus.OK);
+
+    }
 }
