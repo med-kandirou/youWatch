@@ -76,8 +76,18 @@ public class VideoService implements IVideo{
     }
 
 
+    @Override
     public List<VideoDTOres> getvideoByChannel(Long channelId) {
         List<Video> videos = videoRepository.findVideoByChannelId(channelId);
+        return videos.stream()
+                .map(video -> modelMapper.map(video, VideoDTOres.class))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<VideoDTOres> search(String inputSearch) {
+        List<Video> videos = videoRepository.search(inputSearch);
         return videos.stream()
                 .map(video -> modelMapper.map(video, VideoDTOres.class))
                 .collect(Collectors.toList());

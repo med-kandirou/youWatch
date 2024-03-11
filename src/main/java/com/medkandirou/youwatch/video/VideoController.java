@@ -54,4 +54,10 @@ public class VideoController {
         return new ResponseEntity<>(videoService.getvideoByChannel(channelId), HttpStatus.OK);
     }
 
+
+    @GetMapping(path = {"search/{inputSearch}"})
+    public ResponseEntity<List<VideoDTOres>> search(@PathVariable("inputSearch") String inputSearch){
+        return new ResponseEntity<>(videoService.search(inputSearch), HttpStatus.OK);
+    }
+
 }
