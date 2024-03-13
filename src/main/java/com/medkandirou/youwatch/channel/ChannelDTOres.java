@@ -12,6 +12,7 @@ public class ChannelDTOres {
     private LocalDate creationDate;
     private String profilImg;
     private String coverImg;
+    private Integer nbrFollowers;
     private String email;
     private Role role;
 }

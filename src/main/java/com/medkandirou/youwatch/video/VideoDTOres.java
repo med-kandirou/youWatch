@@ -18,6 +18,7 @@ public class VideoDTOres {
     private String thumbnail;
     private LocalDateTime datePosting;
     private Integer nbrVues;
+    private Integer nbrLikes;
     private CategoryDTOres category;
     private ChannelDTOres channel;
 }

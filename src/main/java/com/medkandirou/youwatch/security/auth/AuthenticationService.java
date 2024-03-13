@@ -37,7 +37,7 @@ public class AuthenticationService {
     channel.setEmail(request.getEmail());
     channel.setCreationDate(LocalDate.now());
     channel.setProfilImg("https://flowbite.com/docs/images/people/profile-picture-3.jpg");
-    channel.setCoverImg("https://flowbite.com/docs/images/people/profile-picture-3.jpg");
+    channel.setCoverImg("https://flowbite.com/docs/images/examples/image-3@2x.jpg");
     channel.setPassword(passwordEncoder.encode(request.getPassword()));
     channel.setRole(request.getRole());
     return modelMapper.map(repository.save(channel), ChannelDTOres.class);

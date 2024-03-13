@@ -29,6 +29,7 @@ public class Channel implements UserDetails {
     private LocalDate creationDate;
     private String profilImg;
     private String coverImg;
+    private Integer nbrFollowers;
     @NonNull private String email;
     @NonNull private String password;
     @Enumerated(EnumType.STRING)

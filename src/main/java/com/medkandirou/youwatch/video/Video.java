@@ -25,6 +25,7 @@ public class Video {
     @NonNull private String thumbnail;
     @NonNull private LocalDateTime datePosting;
     @NonNull private Integer nbrVues;
+    @NonNull private Integer nbrLikes;
     @ManyToOne
     @NonNull private Category category;
     @ManyToOne

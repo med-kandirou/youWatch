@@ -12,4 +12,6 @@ public interface IVideo extends IData<VideoDTOreq,VideoDTOres,Long> {
     List<VideoDTOres> getvideoByChannel(Long channelId);
 
     List<VideoDTOres> search(String inputSearch);
+
+
 }

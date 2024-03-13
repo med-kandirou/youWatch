@@ -54,16 +54,16 @@ public class VideoConfig {
             channel1.setId(1L);
             Video video1 = new Video("title 1", "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus\n" +
                     "        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer\n" +
-                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 10000,c1,channel1);
+                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg" ,LocalDateTime.now(),100000, 10000,c1,channel1);
             Video video2 = new Video("title 2", "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus\n" +
                     "        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer\n" +
-                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 5000,c1,channel1);
+                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 50000,5000,c1,channel1);
             Video video3 = new Video("title 3", "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus\n" +
                     "        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer\n" +
-                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 78000,c1,channel1);
+                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 99000,78000,c1,channel1);
             Video video4 = new Video("title 4", "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus\n" +
                     "        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer\n" +
-                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 100,c1,channel1);
+                    "        labore wes anderson cred nesciunt sapiente ea proident.", "https://player.cloudinary.com/embed/?cloud_name=drlfmis63&public_id=samples/dance-2", "https://flowbite.com/docs/images/people/profile-picture-3.jpg", LocalDateTime.now(), 93000,100,c1,channel1);
 
             videoRepository.saveAll(List.of(video1,video2,video3,video4));
         };
