@@ -1,14 +1,13 @@
 package com.medkandirou.youwatch.security.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.medkandirou.youwatch.channel.Channel;
+import lombok.*;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationResponse {
-  private String Token;
+  @NonNull private String token;
+  @NonNull private Channel channel;
 }

@@ -36,6 +36,7 @@ public class AuthenticationService {
     channel.setLastname(request.getLastname());
     channel.setEmail(request.getEmail());
     channel.setCreationDate(LocalDate.now());
+    channel.setNbrFollowers(0);
     channel.setProfilImg("https://flowbite.com/docs/images/people/profile-picture-3.jpg");
     channel.setCoverImg("https://flowbite.com/docs/images/examples/image-3@2x.jpg");
     channel.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -44,7 +45,6 @@ public class AuthenticationService {
   }
 
   public AuthenticationResponse login(AuthenticationRequest request) {
-
     Channel channel=repository.findByEmail(request.getEmail())
             .orElseThrow(()-> new ResourceNotFoundException("Channel not found"));
     authenticationManager.authenticate(
@@ -60,7 +60,7 @@ public class AuthenticationService {
     claims.put("role", channel.getRole().name());
 
     String jwt=jwtService.generateToken(claims,channel);
-    return AuthenticationResponse.builder().Token(jwt).build();
+    return AuthenticationResponse.builder().token(jwt).channel(channel).build();
   }
 
 }

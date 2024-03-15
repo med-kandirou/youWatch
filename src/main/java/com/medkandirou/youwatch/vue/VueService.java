@@ -68,4 +68,13 @@ public class VueService implements IVue{
         vueRepository.deleteById(videoChannelId);
         return modelMapper.map(vue, VueDTOreq.class);
     }
+
+
+    @Override
+    public List<VueDTOres> findVueByChannelId(Long channelId) {
+        List<Vue> vues = vueRepository.findVueByChannelId(channelId);
+        return vues.stream()
+                .map(v -> modelMapper.map(v, VueDTOres.class))
+                .collect(Collectors.toList());
+    }
 }

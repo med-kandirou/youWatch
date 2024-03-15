@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -16,5 +17,5 @@ public class Vue {
     @EmbeddedId
     @NotNull
     private Video_channel_Id video_channel_id;
-    private LocalDate date;
+    private LocalDateTime date;
 }
