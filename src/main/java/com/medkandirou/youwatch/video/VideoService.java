@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +54,9 @@ public class VideoService implements IVideo{
                 .orElseThrow(() -> new ResourceNotFoundException("id categorie : " + entity.getCategoryId()));
         video.setCategory(category);
         video.setChannel(channel);
+        video.setDatePosting(LocalDateTime.now());
+        video.setNbrLikes(0);
+        video.setNbrVues(0);
         videoRepository.save(video);
         return modelMapper.map(video, VideoDTOres.class);
     }
