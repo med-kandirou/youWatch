@@ -29,7 +29,7 @@ public class VideoController {
     }
 
     @PostMapping
-    //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     public ResponseEntity<VideoDTOres> save(@Valid @RequestBody VideoDTOreq videoDTOReq){
         return new ResponseEntity<>(videoService.save(videoDTOReq), HttpStatus.OK);
     }
