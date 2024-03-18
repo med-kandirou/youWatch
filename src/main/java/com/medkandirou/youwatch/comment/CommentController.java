@@ -30,33 +30,13 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<CommentDTOres> save(@Valid @RequestBody CommentDTOreq categorieId){
-        return new ResponseEntity<>(commentService.save(categorieId), HttpStatus.OK);
+    public ResponseEntity<CommentDTOres> save(@Valid @RequestBody CommentDTOreq commentDTOreq){
+        return new ResponseEntity<>(commentService.save(commentDTOreq), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<CommentDTOres> update(@Valid @RequestBody CommentDTOreq categorieId){
         return new ResponseEntity<>(commentService.save(categorieId), HttpStatus.OK);
-    }
-
-    @GetMapping(path = {"{channelId}/{videoId}"})
-    public ResponseEntity<CommentDTOres> findById(@PathVariable("channelId") Long channelId,@PathVariable("videoId") Long videoId){
-        Video_channel_Id id= new Video_channel_Id();
-        Channel ch= new Channel();
-        ch.setId(channelId);
-        Video video= new Video();
-        video.setId(videoId);
-        return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
-    }
-
-    @DeleteMapping(path = {"{channelId}/{videoId}"})
-    public ResponseEntity<CommentDTOreq> deleteById(@PathVariable("channelId") Long channelId,@PathVariable("videoId") Long videoId){
-        Video_channel_Id id= new Video_channel_Id();
-        Channel ch= new Channel();
-        ch.setId(channelId);
-        Video video= new Video();
-        video.setId(videoId);
-        return new ResponseEntity<>(commentService.deleteById(id), HttpStatus.OK);
     }
 
 

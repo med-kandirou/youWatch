@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CommentRepository extends JpaRepository<Comment, Video_channel_Id> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query("SELECT c FROM Comment c WHERE c.video_channel_id.video.id = :videoId")
     List<Comment> getCommentByVideoId(Long videoId);

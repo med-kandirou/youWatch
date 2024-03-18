@@ -9,6 +9,7 @@ import com.medkandirou.youwatch.video.VideoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,10 +30,8 @@ public class CommentService implements IComment{
 
 
     @Override
-    public CommentDTOres findById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
-                .orElseThrow(() -> new ResourceNotFoundException("id video_channel : " + videoChannelId));
-        return modelMapper.map(Comment, CommentDTOres.class);
+    public CommentDTOres findById(Video_channel_Id id) {
+        return null;
     }
 
     @Override
@@ -46,14 +45,15 @@ public class CommentService implements IComment{
     @Override
     public CommentDTOres save(CommentDTOreq entity) {
         Comment comment = modelMapper.map(entity, Comment.class);
-        Channel channel = channelRepository.findById(entity.getVideo_channel_id().getChannel().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("id Channel: " + entity.getVideo_channel_id().getChannel().getId()));
-        Video video = videoRepository.findById(entity.getVideo_channel_id().getVideo().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("id Video: " + entity.getVideo_channel_id().getVideo().getId()));
+        Channel channel = channelRepository.findById(entity.getChannelId())
+                .orElseThrow(() -> new ResourceNotFoundException("id Channel: " + entity.getChannelId()));
+        Video video = videoRepository.findById(entity.getVideoId())
+                .orElseThrow(() -> new ResourceNotFoundException("id Video: " + entity.getVideoId()));
         Video_channel_Id video_channel_id= new Video_channel_Id();
         video_channel_id.setChannel(channel);
         video_channel_id.setVideo(video);
         comment.setVideo_channel_id(video_channel_id);
+        comment.setDatePosting(LocalDateTime.now());
         commentRepository.save(comment);
         return modelMapper.map(comment, CommentDTOres.class);
     }
@@ -64,11 +64,12 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public CommentDTOreq deleteById(Video_channel_Id videoChannelId) {
-        Comment Comment = commentRepository.findById(videoChannelId)
-                .orElseThrow(() -> new ResourceNotFoundException("id Categorie: " + videoChannelId));
-        commentRepository.deleteById(videoChannelId);
-        return modelMapper.map(Comment, CommentDTOreq.class);
+    public CommentDTOreq deleteById(Video_channel_Id id) {
+        /*Comment Comment = commentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id Categorie: " + id));
+        commentRepository.deleteById(id);
+        return modelMapper.map(Comment, CommentDTOreq.class);*/
+        return null;
     }
 
 
