@@ -28,6 +28,11 @@ public class VideoController {
         return new ResponseEntity<>(videoService.paginate(pageable), HttpStatus.OK);
     }
 
+    @GetMapping("/trending")
+    public ResponseEntity<List<VideoDTOres>> trending() {
+        return new ResponseEntity<>(videoService.trending(), HttpStatus.OK);
+    }
+
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     public ResponseEntity<VideoDTOres> save(@Valid @RequestBody VideoDTOreq videoDTOReq){

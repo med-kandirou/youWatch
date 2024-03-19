@@ -99,6 +99,15 @@ public class VideoService implements IVideo{
     }
 
 
+    @Override
+    public List<VideoDTOres> trending() {
+        List<Video> videos = videoRepository.trending();
+        return videos.stream()
+                .map(video -> modelMapper.map(video, VideoDTOres.class))
+                .collect(Collectors.toList());
+    }
+
+
 
 
 }
