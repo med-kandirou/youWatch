@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @RequiredArgsConstructor
@@ -15,5 +16,5 @@ import java.time.LocalDate;
 public class Subscribe {
     @EmbeddedId
     @NotNull private SubscribeId subscribeId;
-    @NotNull private LocalDate date;
+    @NotNull private LocalDateTime date;
 }

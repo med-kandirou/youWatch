@@ -22,7 +22,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfiguration {
-    private static final String[] WHITE_LIST_URL = {"api/auth/**","api/category","/api/video/**","/api/comment/**","/api/vue/**","/api/channel/**","/api/upload/**","api/comment/**"};
+    private static final String[] WHITE_LIST_URL = {"api/auth/**","api/category","/api/video/**","/api/comment/**","/api/vue/**","/api/channel/**","/api/upload/**","api/comment/**","api/subscribe/**"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;

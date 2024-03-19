@@ -15,14 +15,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="api/comment")
-
+@RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
-
-    private CommentController(CommentService commentService){
-        this.commentService=commentService;
-    }
 
     @GetMapping
     public ResponseEntity<List<CommentDTOres>> getAll(){

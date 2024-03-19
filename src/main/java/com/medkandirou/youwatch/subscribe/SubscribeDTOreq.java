@@ -11,7 +11,4 @@ import java.time.LocalDate;
 public class SubscribeDTOreq {
     @NotNull(message = "subscribeId is required")
     private SubscribeId subscribeId;
-    @NotNull(message = "date cannot be null")
-    @PastOrPresent(message = "date must be in the past or present")
-    private LocalDate date;
 }

@@ -2,6 +2,7 @@ package com.medkandirou.youwatch.channel;
 
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,16 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(path = "/api/channel")
+@RequiredArgsConstructor
 public class ChannelController {
     
     private final ChannelService channelService;
 
-    private ChannelController(ChannelService channelService){
-        this.channelService=channelService;
-    }
-    
     @GetMapping
     public ResponseEntity<List<ChannelDTOres>> getAll(){
         return new ResponseEntity<>(channelService.findAll(), HttpStatus.OK);

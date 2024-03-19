@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class SubscribeId implements Serializable {
     @ManyToOne
-    private Channel channel_follow;
+    private Channel channelFollow;
     @ManyToOne
-    private Channel channel_followed;
+    private Channel channelFollowed;
 }
