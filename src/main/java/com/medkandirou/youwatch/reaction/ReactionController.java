@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="api/reaction")
+@RequestMapping(path="api/react")
 public class ReactionController {
 
     private final ReactionService reactionService;
@@ -26,8 +26,8 @@ public class ReactionController {
     }
 
     @PostMapping
-    public ResponseEntity<ReactionDTOres> save(@Valid @RequestBody ReactionDTOreq categorieId){
-        return new ResponseEntity<>(reactionService.save(categorieId), HttpStatus.OK);
+    public ResponseEntity<ReactionDTOres> save(@Valid @RequestBody ReactionDTOreq reactionDTOreq){
+        return new ResponseEntity<>(reactionService.save(reactionDTOreq), HttpStatus.OK);
     }
 
     @PutMapping

@@ -55,6 +55,7 @@ public class ReactionService implements IReaction{
         video_channel_id.setChannel(channel);
         video_channel_id.setVideo(video);
         reaction.setVideo_channel_id(video_channel_id);
+        reaction.setReaction(entity.isReaction());
         reactionRepository.save(reaction);
         return modelMapper.map(reaction, ReactionDTOres.class);
     }

@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Video {
     @NonNull private Integer nbrVues;
     @NonNull private Integer nbrLikes;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NonNull private Category category;
     @ManyToOne
     @NonNull private Channel channel;
