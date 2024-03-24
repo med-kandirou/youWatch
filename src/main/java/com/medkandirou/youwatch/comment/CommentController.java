@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class CommentController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     public ResponseEntity<CommentDTOres> save(@Valid @RequestBody CommentDTOreq commentDTOreq){
         return new ResponseEntity<>(commentService.save(commentDTOreq), HttpStatus.OK);
     }

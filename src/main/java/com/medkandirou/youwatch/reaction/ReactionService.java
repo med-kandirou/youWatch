@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,9 +32,9 @@ public class ReactionService implements IReaction{
 
     @Override
     public ReactionDTOres findById(Video_channel_Id videoChannelId) {
-        Reaction Reaction = reactionRepository.findById(videoChannelId)
+        Reaction reaction = reactionRepository.findById(videoChannelId)
                 .orElseThrow(() -> new ResourceNotFoundException("id video_channel : " + videoChannelId));
-        return modelMapper.map(Reaction, ReactionDTOres.class);
+        return modelMapper.map(reaction, ReactionDTOres.class);
     }
 
     @Override
@@ -51,14 +52,22 @@ public class ReactionService implements IReaction{
                 .orElseThrow(() -> new ResourceNotFoundException("id Channel: " + entity.getVideo_channel_id().getChannel().getId()));
         Video video = videoRepository.findById(entity.getVideo_channel_id().getVideo().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("id Video: " + entity.getVideo_channel_id().getVideo().getId()));
-        Video_channel_Id video_channel_id= new Video_channel_Id();
+        Video_channel_Id video_channel_id = new Video_channel_Id();
         video_channel_id.setChannel(channel);
         video_channel_id.setVideo(video);
-        reaction.setVideo_channel_id(video_channel_id);
-        reaction.setReaction(entity.isReaction());
-        reactionRepository.save(reaction);
-        return modelMapper.map(reaction, ReactionDTOres.class);
+        Optional<Reaction> r = reactionRepository.findById(video_channel_id);
+        if (r.isPresent()) {
+            Reaction existingReaction = r.get();
+            existingReaction.setReaction(entity.isReaction());
+            reactionRepository.save(existingReaction);
+            return modelMapper.map(existingReaction, ReactionDTOres.class);
+        } else {
+            reaction.setVideo_channel_id(video_channel_id);
+            reactionRepository.save(reaction);
+            return modelMapper.map(reaction, ReactionDTOres.class);
+        }
     }
+
 
     @Override
     public ReactionDTOres update(ReactionDTOreq entity) {

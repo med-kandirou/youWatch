@@ -4,8 +4,10 @@ import com.medkandirou.youwatch.channel.Channel;
 import com.medkandirou.youwatch.helpers.Video_channel_Id;
 import com.medkandirou.youwatch.video.Video;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +15,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path="api/react")
+@RequiredArgsConstructor
 public class ReactionController {
 
     private final ReactionService reactionService;
-    private ReactionController(ReactionService reactionService){
-        this.reactionService=reactionService;
-    }
+
 
     @GetMapping
     public ResponseEntity<List<ReactionDTOres>> getAll(){
@@ -26,6 +27,7 @@ public class ReactionController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     public ResponseEntity<ReactionDTOres> save(@Valid @RequestBody ReactionDTOreq reactionDTOreq){
         return new ResponseEntity<>(reactionService.save(reactionDTOreq), HttpStatus.OK);
     }
@@ -42,6 +44,8 @@ public class ReactionController {
         ch.setId(channelId);
         Video video= new Video();
         video.setId(videoId);
+        id.setChannel(ch);
+        id.setVideo(video);
         return new ResponseEntity<>(reactionService.findById(id), HttpStatus.OK);
     }
 

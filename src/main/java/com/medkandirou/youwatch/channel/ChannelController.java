@@ -29,9 +29,10 @@ public class ChannelController {
         return new ResponseEntity<>(channelService.save(channelDTOReq), HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/update")
+    //@PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     public ResponseEntity<ChannelDTOres> update(@Valid @RequestBody ChannelDTOreq channelDTOReq){
-        return new ResponseEntity<>(channelService.save(channelDTOReq), HttpStatus.OK);
+        return new ResponseEntity<>(channelService.update(channelDTOReq), HttpStatus.OK);
     }
 
     @GetMapping(path = {"{channelId}"})

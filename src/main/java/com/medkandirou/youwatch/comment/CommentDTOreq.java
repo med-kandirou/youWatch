@@ -11,5 +11,5 @@ public class CommentDTOreq {
     @NotNull(message = "channelId is required")
     private Long channelId;
     @NotNull(message = "content is required")
-    @NotNull private String content;
+    private String content;
 }

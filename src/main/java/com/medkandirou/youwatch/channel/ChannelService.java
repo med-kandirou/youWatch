@@ -7,6 +7,7 @@ import com.medkandirou.youwatch.exception.ResourceNotFoundException;
 import com.medkandirou.youwatch.video.VideoRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,13 +24,13 @@ public class ChannelService implements IChannel{
     private final VideoRepository videoRepository;
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
-
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public ChannelDTOres findById(Long id) {
-        Channel question = channelRepository.findById(id)
+        Channel channel = channelRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id channel : " + id));
-        return modelMapper.map(question, ChannelDTOres.class);
+        return modelMapper.map(channel, ChannelDTOres.class);
     }
 
     @Override
@@ -48,9 +49,41 @@ public class ChannelService implements IChannel{
     }
 
     @Override
-    public ChannelDTOres update(ChannelDTOreq entity) {
-        return null;
+    public ChannelDTOres update(ChannelDTOreq channelDTOReq) {
+        Channel channel = channelRepository.findById(channelDTOReq.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Channel not found with id: " + channelDTOReq.getId()));
+
+        // Update the fields that are provided in the DTO
+        if (channelDTOReq.getFirstname() != null) {
+            channel.setFirstname(channelDTOReq.getFirstname());
+        }
+
+        if (channelDTOReq.getLastname() != null) {
+            channel.setLastname(channelDTOReq.getLastname());
+        }
+
+        if (!channelDTOReq.getProfilImg().isEmpty()) {
+            channel.setProfilImg(channelDTOReq.getProfilImg());
+        }
+
+        if (!channelDTOReq.getCoverImg().isEmpty()) {
+            channel.setCoverImg(channelDTOReq.getCoverImg());
+        }
+
+        if (channelDTOReq.getEmail() != null) {
+            channel.setEmail(channelDTOReq.getEmail());
+        }
+
+        if (!channelDTOReq.getPassword().isEmpty()) {
+            channel.setPassword(passwordEncoder.encode(channelDTOReq.getPassword()));
+        }
+
+        return modelMapper.map(channelRepository.save(channel), ChannelDTOres.class);
     }
+
+
+
+
 
     @Override
     public ChannelDTOreq deleteById(Long id) {
