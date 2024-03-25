@@ -68,7 +68,6 @@ public class SubscribeService implements ISubscribe{
     }
 
 
-
     @Override
     public List<SubscribeDTOres> findSubscribeByChannelId(Long channelId) {
         List<Subscribe> subscribes = subscribeRepository.findSubscribeByChannelId(channelId);
