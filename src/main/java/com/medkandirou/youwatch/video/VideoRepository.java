@@ -1,5 +1,6 @@
 package com.medkandirou.youwatch.video;
 
+import com.medkandirou.youwatch.category.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,9 @@ public interface VideoRepository extends JpaRepository<Video,Long> {
             "LOWER(v.category.name) LIKE LOWER(CONCAT('%', :inputSearch, '%')) OR " +
             "LOWER(CONCAT(v.channel.firstname, v.channel.lastname)) LIKE LOWER(CONCAT('%', :inputSearch, '%'))")
     List<Video> search(String inputSearch);
+
+
+    List<Video> findByCategory(Category category);
 
 
 

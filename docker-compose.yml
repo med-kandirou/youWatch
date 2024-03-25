@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: youwatch
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: simokandirou1234@
+    networks:
+      - app
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - app
+networks:
+  app:

@@ -107,7 +107,13 @@ public class VideoService implements IVideo{
                 .collect(Collectors.toList());
     }
 
-
-
+    @Override
+    public List<VideoDTOres> findByCategory(Integer categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + categoryId));
+        return videoRepository.findByCategory(category).stream()
+                .map(video -> modelMapper.map(video, VideoDTOres.class))
+                .collect(Collectors.toList());
+    }
 
 }

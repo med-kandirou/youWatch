@@ -18,15 +18,15 @@ public class VideoController {
 
     private final IVideo videoService;
 
-    /*@GetMapping
+    @GetMapping
     public ResponseEntity<List<VideoDTOres>> getAll(){
         return new ResponseEntity<>(videoService.findAll(), HttpStatus.OK);
-    }*/
+    }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<Page<VideoDTOres>> paginate(Pageable pageable) {
         return new ResponseEntity<>(videoService.paginate(pageable), HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("/trending")
     public ResponseEntity<List<VideoDTOres>> trending() {
@@ -63,6 +63,11 @@ public class VideoController {
     @GetMapping(path = {"search/{inputSearch}"})
     public ResponseEntity<List<VideoDTOres>> search(@PathVariable("inputSearch") String inputSearch){
         return new ResponseEntity<>(videoService.search(inputSearch), HttpStatus.OK);
+    }
+
+    @GetMapping(path = {"byCatagory/{categorieId}"})
+    public ResponseEntity<List<VideoDTOres>> findByCategory(@PathVariable("categorieId") Integer categorieId){
+        return new ResponseEntity<>(videoService.findByCategory(categorieId), HttpStatus.OK);
     }
 
 
