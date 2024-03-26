@@ -81,9 +81,7 @@ class SubscribeServiceTest {
         Subscribe subscribe = new Subscribe();
         when(subscribeRepository.findById(subscribeId)).thenReturn(Optional.of(subscribe));
         when(modelMapper.map(subscribe, SubscribeDTOreq.class)).thenReturn(new SubscribeDTOreq());
-
         SubscribeDTOreq result = subscribeService.deleteById(subscribeId);
-
         assertNotNull(result);
         verify(subscribeRepository).findById(subscribeId);
         verify(subscribeRepository).deleteById(subscribeId);
