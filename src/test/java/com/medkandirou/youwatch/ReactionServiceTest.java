@@ -31,10 +31,8 @@ class ReactionServiceTest {
 
     @Mock
     private VideoRepository videoRepository;
-
     @Mock
     private ModelMapper modelMapper;
-
     @InjectMocks
     private ReactionService reactionService;
 
