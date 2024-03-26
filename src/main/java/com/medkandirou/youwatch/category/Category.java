@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-
 @Data
 @Entity
 @RequiredArgsConstructor
