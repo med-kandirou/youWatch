@@ -22,20 +22,16 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ReactionServiceTest {
-
     @Mock
     private ReactionRepository reactionRepository;
-
     @Mock
     private ChannelRepository channelRepository;
-
     @Mock
     private VideoRepository videoRepository;
     @Mock
     private ModelMapper modelMapper;
     @InjectMocks
     private ReactionService reactionService;
-
     @Test
     void findAll_existingReactions_returnListOfReactions() {
         List<Reaction> reactions = Arrays.asList(new Reaction(), new Reaction());
